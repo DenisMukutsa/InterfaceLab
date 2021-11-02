@@ -1,4 +1,4 @@
-package interfaceLab;
+package interfaceLab; 
 
 public class Main {
 
