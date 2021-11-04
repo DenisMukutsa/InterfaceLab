@@ -2,11 +2,11 @@ package interfaceLab;
 
 import java.util.Arrays;
 
-public class Array implements BooleanLab {
+public class ArrayBit implements BooleanLab {
 
-    public Boolean check(int index) throws IndexOutOfBoundsException  {
-        if(index >= 0 && index < array.length) {
-           return array[index];
+    public Byte check(int index) throws IndexOutOfBoundsException  {
+        if(index >= 0 && index < arrayBit.length) {
+            return arrayBit[index];
         }
         else {
             throw new IndexOutOfBoundsException("Неверно указан индекс массива");
@@ -14,18 +14,18 @@ public class Array implements BooleanLab {
     }
 
     public void set(int index) throws IndexOutOfBoundsException  {
-        if(index >= 0 && index < array.length) {
-            array[index] = true;
+        if(index >= 0 && index < arrayBit.length) {
+            arrayBit[index] = 1;
         }
         else {
-              throw new IndexOutOfBoundsException("Неверно указан индекс массива");
+            throw new IndexOutOfBoundsException("Неверно указан индекс массива");
         }
 
     }
 
     public void setValue(int index, Object value) throws IndexOutOfBoundsException  {
-        if(index >= 0 && index < array.length) {
-            array[index] = (Boolean) value;
+        if(index >= 0 && index < arrayBit.length) {
+            arrayBit[index] = (Byte) value;
         }
         else {
             throw new IndexOutOfBoundsException ("Неверно указан индекс массива или тип значения, которое должно быть присвоено элементу массива");
@@ -34,9 +34,9 @@ public class Array implements BooleanLab {
     }
 
     public void dropValue(int index) throws IndexOutOfBoundsException {
-        if(index >= 0 && index < array.length) {
-            if (array[index] == true) {
-                array[index] = false;
+        if(index >= 0 && index < arrayBit.length) {
+            if (arrayBit[index] == 1) {
+                arrayBit[index] = 0;
             }
         }
         else {
@@ -45,9 +45,13 @@ public class Array implements BooleanLab {
     }
 
     public void invert(int index) throws IndexOutOfBoundsException  {
-        if(index >= 0 && index < array.length) {
-            boolean temp = array[index];
-            array[index] = !temp;
+        if(index >= 0 && index < arrayBit.length) {
+            if(arrayBit[index] == 0 ) {
+                arrayBit[index] = 1;
+            }
+            else {
+                arrayBit[index] = 0;
+            }
         }
         else {
             throw new IndexOutOfBoundsException("Неверно указан индекс массива");
@@ -56,8 +60,8 @@ public class Array implements BooleanLab {
 
     public int numberTrue() {
         int count = 0;
-        for(int i = 0; i < array.length; i++) {
-            if(array[i] == true) {
+        for(byte number : arrayBit) {
+            if(number == 1) {
                 count++;
             }
         }
@@ -65,15 +69,8 @@ public class Array implements BooleanLab {
     }
 
     public String toString() {
-        int[] arrayInt = new int[1024];
-        for(int i = 0; i < array.length; i++) {
-            if(array[i] == true) {
-                arrayInt[i] = 1;
-            }
-            else {
-                arrayInt[i] = 0;
-            }
-        }
-        return Arrays.toString(arrayInt);
+        return Arrays.toString(arrayBit);
     }
+
+
 }
